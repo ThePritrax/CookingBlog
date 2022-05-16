@@ -6,6 +6,7 @@ const Category = require('../models/Category');
  * Homepage
  */
 exports.homepage = async(req, res) => {
+<<<<<<< HEAD
     try {
         const limitNumber = 5;
         const categories = await Category.find({}).limit(limitNumber);
@@ -32,3 +33,42 @@ exports.exploreCategories = async(req, res) => {
   }
 
 
+=======
+    res.render('index',{ title: 'Cooking Blog - Home' });
+}
+
+async function insertDummyCategoryData(){
+  try {
+    await Category.insertMany([
+      {
+        "name": "Thai",
+        "image": "thai-food.jpg"
+      },
+      {
+        "name": "American",
+        "image": "american-food.jpg"
+      }, 
+      {
+        "name": "Chinese",
+        "image": "chinese-food.jpg"
+      },
+      {
+        "name": "Mexican",
+        "image": "mexican-food.jpg"
+      }, 
+      {
+        "name": "Indian",
+        "image": "indian-food.jpg"
+      },
+      {
+        "name": "Spanish",
+        "image": "spanish-food.jpg"
+      }
+    ]);
+  } catch (error) {
+    console.log('err', + error)
+  }
+}
+
+insertDummyCategoryData();
+>>>>>>> cbe9edfa8f04401520b5731e8fc7145d0a742f6d

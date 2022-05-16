@@ -3,19 +3,23 @@ const Category = require('../models/Category');
 
 /**
  * GET /
- * Homepage
- */
+ * Homepage 
+*/
 exports.homepage = async(req, res) => {
-<<<<<<< HEAD
-    try {
-        const limitNumber = 5;
-        const categories = await Category.find({}).limit(limitNumber);
+  try {
+    const limitNumber = 5;
+    const categories = await Category.find({}).limit(limitNumber);
+    const latest = await Recipe.find({}).sort({_id: -1}).limit(limitNumber);
+    const thai = await Recipe.find({ 'category': 'Thai' }).limit(limitNumber);
+    const american = await Recipe.find({ 'category': 'American' }).limit(limitNumber);
+    const chinese = await Recipe.find({ 'category': 'Chinese' }).limit(limitNumber);
 
-        res.render('index',{ title: 'Cooking Blog - Home', categories });
-    } catch(error) {
-        res.status(500).send({message: error.message || "Error Occured"});
-    }
+    const food = { latest, thai, american, chinese };
 
+    res.render('index', { title: 'Cooking Blog - Home', categories, food } );
+  } catch (error) {
+    res.satus(500).send({message: error.message || "Error Occured" });
+  }
 }
 
 /**
@@ -23,52 +27,11 @@ exports.homepage = async(req, res) => {
  * Categories 
 */
 exports.exploreCategories = async(req, res) => {
-    try {
-      const limitNumber = 20;
-      const categories = await Category.find({}).limit(limitNumber);
-      res.render('categories', { title: 'Cooking Blog - Categoreis', categories } );
-    } catch (error) {
-      res.satus(500).send({message: error.message || "Error Occured" });
-    }
-  }
-
-
-=======
-    res.render('index',{ title: 'Cooking Blog - Home' });
-}
-
-async function insertDummyCategoryData(){
   try {
-    await Category.insertMany([
-      {
-        "name": "Thai",
-        "image": "thai-food.jpg"
-      },
-      {
-        "name": "American",
-        "image": "american-food.jpg"
-      }, 
-      {
-        "name": "Chinese",
-        "image": "chinese-food.jpg"
-      },
-      {
-        "name": "Mexican",
-        "image": "mexican-food.jpg"
-      }, 
-      {
-        "name": "Indian",
-        "image": "indian-food.jpg"
-      },
-      {
-        "name": "Spanish",
-        "image": "spanish-food.jpg"
-      }
-    ]);
+    const limitNumber = 20;
+    const categories = await Category.find({}).limit(limitNumber);
+    res.render('categories', { title: 'Cooking Blog - Categoreis', categories } );
   } catch (error) {
-    console.log('err', + error)
+    res.satus(500).send({message: error.message || "Error Occured" });
   }
-}
-
-insertDummyCategoryData();
->>>>>>> cbe9edfa8f04401520b5731e8fc7145d0a742f6d
+} 

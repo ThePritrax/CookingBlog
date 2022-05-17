@@ -1,5 +1,6 @@
 require('../models/database');
 const Category = require('../models/Category');
+const Recipe = require('../models/Recipe');
 
 /**
  * GET /
@@ -9,7 +10,14 @@ exports.homepage = async(req, res) => {
   try {
     const limitNumber = 5;
     const categories = await Category.find({}).limit(limitNumber);
-    res.render('index', { title: 'Cooking Blog - Home', categories } );
+    const latest = await Recipe.find({}).sort({_id: -1}).limit(limitNumber);
+    const thai = await Recipe.find({ 'category': 'Thai' }).limit(limitNumber);
+    const american = await Recipe.find({ 'category': 'American' }).limit(limitNumber);
+    const chinese = await Recipe.find({ 'category': 'Chinese' }).limit(limitNumber);
+
+    const food = { latest, thai, american, chinese };
+
+    res.render('index', { title: 'Cooking Blog - Home', categories, food } );
   } catch (error) {
     res.satus(500).send({message: error.message || "Error Occured" });
   }
@@ -24,6 +32,20 @@ exports.exploreCategories = async(req, res) => {
     const limitNumber = 20;
     const categories = await Category.find({}).limit(limitNumber);
     res.render('categories', { title: 'Cooking Blog - Categories', categories } );
+  } catch (error) {
+    res.satus(500).send({message: error.message || "Error Occured" });
+  }
+} 
+
+/**
+ * GET /recipe
+ * Recipe 
+*/
+exports.exploreRecipe = async(req, res) => {
+  try {
+    let recipeId = req.params.id;
+    const recipe = await Recipe.findById(recipeId);
+    res.render('recipe', { title: 'Cooking Blog - Recipe', recipe } );
   } catch (error) {
     res.satus(500).send({message: error.message || "Error Occured" });
   }

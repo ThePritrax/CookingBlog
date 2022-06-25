@@ -116,16 +116,16 @@
 </section>
 <!--american end-->
 
-<!--chinese start-->
+<!--indian start-->
 <section class="pb-4 pt-4">
   <div class="d-flex mb-2 align-items-center">
-    <h2>Chinese Recipes</h2>
-    <a href="/categories/American" class="ms-auto">View More</a>
+    <h2>Indian Recipes</h2>
+    <a href="/categories/Indian" class="ms-auto">View More</a>
   </div>
 
   <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
-    <% if(food.chinese != '') { %>
-      <% food.chinese.forEach(function(recipe, index){ %>
+    <% if(food.indian != '') { %>
+      <% food.indian.forEach(function(recipe, index){ %>
       <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
         <div class="category__img category__img--large shadow">
           <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
@@ -138,4 +138,76 @@
     <% } %>
   </div>
 </section>
-<!--chinese end-->
+<!--indian end-->
+
+<!--spanish start-->
+<section class="pb-4 pt-4">
+  <div class="d-flex mb-2 align-items-center">
+    <h2>Spanish Recipes</h2>
+    <a href="/categories/spanish" class="ms-auto">View More</a>
+  </div>
+
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(food.spanish != '') { %>
+      <% food.spanish.forEach(function(recipe, index){ %>
+      <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
+        <div class="category__img category__img--large shadow">
+          <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%= recipe.name %></div>
+      </a>
+      <% }) %>
+    <% } else { %>
+      <p>No items found.</p>
+    <% } %>
+  </div>
+</section>
+<!--spanish end-->
+
+<!--italian start-->
+<section class="pb-4 pt-4">
+  <div class="d-flex mb-2 align-items-center">
+    <h2>Italian Recipes</h2>
+    <a href="/categories/italian" class="ms-auto">View More</a>
+  </div>
+
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(food.italian != '') { %>
+      <% food.italian.forEach(function(recipe, index){ %>
+      <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
+        <div class="category__img category__img--large shadow">
+          <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%= recipe.name %></div>
+      </a>
+      <% }) %>
+    <% } else { %>
+      <p>No items found.</p>
+    <% } %>
+  </div>
+</section>
+<!--italian end-->
+
+<!--british start-->
+<section class="pb-4 pt-4">
+  <div class="d-flex mb-2 align-items-center">
+    <h2>British Recipes</h2>
+    <a href="/categories/british" class="ms-auto">View More</a>
+  </div>
+
+  <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+    <% if(food.british != '') { %>
+      <% food.british.forEach(function(recipe, index){ %>
+      <a href="/recipe/<%= recipe._id %>" class="col text-center category__link">
+        <div class="category__img category__img--large shadow">
+          <img src="/uploads/<%= recipe.image %>" alt="<%= recipe.name %>" loading="lazy">
+        </div>
+        <div class="pt-1"><%= recipe.name %></div>
+      </a>
+      <% }) %>
+    <% } else { %>
+      <p>No items found.</p>
+    <% } %>
+  </div>
+</section>
+<!--british end-->

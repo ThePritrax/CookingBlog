@@ -18,8 +18,9 @@ exports.homepage = async(req, res) => {
     const spanish = await Recipe.find({ 'category': 'Spanish' }).limit(limitNumber);
     const italian = await Recipe.find({ 'category': 'Italian' }).limit(limitNumber);
     const british = await Recipe.find({ 'category': 'British' }).limit(limitNumber);
+    const mexican = await Recipe.find({ 'category': 'Mexican' }).limit(limitNumber);
 
-    const food = { latest, thai, american, chinese, indian, spanish, italian, british };
+    const food = { latest, thai, american, chinese, indian, spanish, italian, british, mexican };
 
     res.render('index', { title: 'Cooking Blog - Home', categories, food } );
   } catch (error) {
